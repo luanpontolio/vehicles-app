@@ -1,9 +1,26 @@
 {
   "name": "vehicles-app",
   "version": "1.0.0",
-  "description": "App Vehicles by Conta Azul",
+  "description": "Vehicles App.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/luanpontolio/vehicles-app.git"
+  },
+  "keywords": [
+    "node",
+    "angularjs",
+    "es6"
+  ],
   "author": "Luan Pontolio",
   "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/luanpontolio/vehicles-app/issues"
+  },
+  "homepage": "https://github.com/luanpontolio/vehicles-app#readme",
   "dependencies": {
     "angular": "^1.5.0-rc.2",
     "angular-ui-router": "^0.2.17",
@@ -12,17 +29,14 @@
     "browser-sync": "^2.11.1",
     "browserify": "^13.0.0",
     "browserify-ngannotate": "^2.0.0",
-    "conduit-sass": "^1.6.0",
-    "gulp": "^3.9.0",
+    "gulp": "^3.9.1",
     "gulp-angular-templatecache": "^1.8.0",
-    "gulp-minify-css": "^1.2.3",
     "gulp-notify": "^2.2.0",
     "gulp-rename": "^1.2.2",
-    "gulp-sass": "^2.2.0",
+    "gulp-uglify": "^1.5.3",
     "gulp-util": "^3.0.7",
     "marked": "^0.3.5",
+    "merge-stream": "^1.0.0",
     "vinyl-source-stream": "^1.1.0"
-  },
-  "devDependencies": {
   }
 }
