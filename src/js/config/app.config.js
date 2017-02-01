@@ -3,8 +3,7 @@ function AppConfig($stateProvider, $urlRouterProvider) {
 
   $stateProvider
   .state('app', {
-  	url: '/',
-    // abstract: true,
+    abstract: true,
     templateUrl: 'layout/app-view.html'
   });
 

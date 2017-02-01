@@ -1,5 +1,5 @@
 @import "../dist/css/bootstrap.min";
-
+@import "../dist/css/fonts";
 
 .navbar-inner {
 	display: block;
@@ -15,8 +15,26 @@
 	color: #fff;
 	padding:0;
     margin-bottom: 0;
+    border: none;
+}
 
-	.container {
-    	width: 940px;
-    }
+.page {
+   	margin-top: 1.5rem;
+   	max-width: 940px;
+   	align-content: center;
+}
+
+.form-group {
+	.input-goup {
+		height: 50px;
+		font-family: 'proximanova-regular';
+		font-size: 16px;
+		color: #385a7b;
+		box-shadow: none;
+		border: 1px solid #c9d3dd;
+	}
+}
+
+.btn-green {
+	background-color: #4ABA58;
 }

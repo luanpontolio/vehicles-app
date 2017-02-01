@@ -1,0 +1,58 @@
+<div class="home-page">
+
+  <div class="container container-fluid page">
+    <div class="row">
+
+      <div class="col-md-3">
+        <button class="btn btn-success btn-green" ng-click="$ctrl.addVehicle">Novo Carro</button>
+      </div>
+
+      <div class="col-md-6 col-md-offset-3">
+        <div class="form-group">
+          <div class="input-group">
+            <input type="text"  ng-model="$ctrl.search" class="form-control" placeholder="Pesquisa" aria-describedby="search">
+            <span class="input-group-addon material-icons" id="search">
+              search
+            </span>
+          </div>
+        </div>
+      </div>
+
+    </div>  
+
+    <div class="row">
+      <div class="col-md-12">
+        <table class="table" ng-show="$ctrl.listVehicles()">
+          <thead>
+            <tr>
+              <th>
+                <input type="checkbox"  ng-click="$ctrl.checkedVehicle" ng-click="selectAll()"/>
+              </th>
+              <th ng-click="orderBy('placa');" style="cursor:pointer;" >Placa</th>
+              <th ng-click="orderBy('modelo');" style="cursor:pointer;">Modelo</th>
+              <th ng-click="orderBy('marca');" style="cursor:pointer;">Marca</th>
+              <th >Foto</th>
+              <th ng-click="orderBy('combustivel');" style="cursor:pointer;">Combustível</th>
+              <th>Valor</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr ng-repeat="vehicle in $ctrl.vehicles track by $index | filter:search | orderBy:order:reverse">
+              <td>
+                <input type="checkbox" ng-model"" name="">
+              </td>
+              <td>{{ vehicle.placa | uppercase }}</td>
+              <td>{{ vehicle.modelo | uppercase }}</td>
+              <td>{{ vehicle.marca | uppercase }}</td>
+              <td>
+                <a href="{{vehicle.foto}}">{{ vehicle.foto === "" ? 'Sem Foto' : "Imagem" }}</a>
+                {{ vehicle.foto | uppercase }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+  </div>
+
+</div>
