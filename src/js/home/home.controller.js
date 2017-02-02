@@ -2,26 +2,31 @@ class HomeCtlr{
   constructor(AppConstants, Vehicle){
     'ngInject';
 
+    this.vehicles = [];
+
     this.appName  = AppConstants.appName;
     this._Vehicle = Vehicle;
 
-    this.vehicles = [];
-  }
+    this.typeGases = ('Gasolina Alcool Flex').split(' ').map(function(option) {
+      console.log({ option: option })
+      return { option: option };
+    });
 
-  listVehicles() {
-    return this._Vehicle
-    .getVehicles()
-    .then(
+    this._Vehicle.getVehicles().then(
       (res) => {
         this.vehicles = res.data;
-
-        return res;
       },
       (err) => {
-        return err;
+        console.log(err);
       }
     );
   }
+
+  add(vehicle){
+    console.log(vehicle);
+  }
+
+  
 
 }
 

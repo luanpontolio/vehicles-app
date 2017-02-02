@@ -6,6 +6,7 @@ var app = express();
 app.use(express.static(__dirname + '/public'));
 app.use(bodyParser.json());
 
+var new_vehicles = []
 var vehicles = [ 
   { 
     "combustivel" : "Flex",
@@ -47,7 +48,7 @@ app.get('/vehicles', function(req, res) {
 });
 
 app.post('/vehicles', function(req, res) {
-  vehicles.push(req.body)
+  vehicles.push(req.body);
   res.json(true);
 });
 

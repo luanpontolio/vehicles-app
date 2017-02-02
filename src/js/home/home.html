@@ -4,13 +4,17 @@
     <div class="row">
 
       <div class="col-md-3">
-        <button class="btn btn-success btn-green" ng-click="$ctrl.addVehicle">Novo Carro</button>
+        <button class="btn btn-success btn-green" 
+          ng-click="$ctrl.addVehicle" ng-click="">
+          Novo Carro
+        </button>
       </div>
 
       <div class="col-md-6 col-md-offset-3">
         <div class="form-group">
           <div class="input-group">
-            <input type="text"  ng-model="$ctrl.search" class="form-control" placeholder="Pesquisa" aria-describedby="search">
+            <input type="text"  ng-model="search.marca" 
+              class="form-control" placeholder="Pesquisa" aria-describedby="search">
             <span class="input-group-addon material-icons" id="search">
               search
             </span>
@@ -18,15 +22,65 @@
         </div>
       </div>
 
-    </div>  
+    </div>
+
+    <div class="row">
+      <form name="formVehicle">
+        <div 
+          ng-class="{ 'has-error' : formVehicle.plateVehicle.$invalid && formVehicle.plateVehicle.$dirty, 'has-success' : formVehicle.plateVehicle.$valid, 'form-group' : true }">
+          <input type="text" ng-model="vehicle.placa" 
+            name="plateVehicle" ng-required="true" class="form-control" placeholder="Placa">
+        </div>
+
+        <div class="form-group">
+          <input type="text" ng-model="vehicle.imagem" class="form-control" placeholder="Imagem" >
+        </div>
+
+        <div 
+          ng-class="{ 'has-error' : formVehicle.modelVehicle.$invalid && formVehicle.modelVehicle.$dirty, 'has-success' : formVehicle.modelVehicle.$valid, 'form-group' : true }">
+          <input type="text" ng-model="vehicle.modelo" name="modelVehicle" ng-required="true" 
+            class="form-control" placeholder="Modelo">
+        </div>
+        
+        <div 
+          ng-class="{ 'has-error' : formVehicle.brandClient.$invalid && formVehicle.brandClient.$dirty, 'has-success' : formVehicle.brandClient.$valid, 'form-group' : true }">
+          <input type="text" ng-model="vehicle.marca" name="brandClient" ng-required="true" class="form-control" placeholder="Marca">
+        </div>
+
+        <div class="form-group">
+          <select class="form-control" ng-model="vehicle.combustivel">
+            <option ng-repeat="gas in $ctrl.typeGases" value="{{gas.option}}">
+              {{ gas.option }}
+            </option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <input type="text" ng-model="vehicle.valor" class="form-control" placeholder="Valor">
+        </div>
+
+        <div class="form-group">
+          <button ng-hide="editing" ng-click="$ctrl.add(vehicle);" 
+            ng-disabled="formVehicle.$invalid" class="btn btn-default">
+            Adicionar
+          </button>
+          <button ng-show="editing" ng-click="$ctrl.save(vehicle);" 
+            ng-disabled="formVehicle.$invalid" class="btn btn-info">
+            Editar
+          </button>
+        </div>
+
+    </form>
+
+    </div>
 
     <div class="row">
       <div class="col-md-12">
-        <table class="table" ng-show="$ctrl.listVehicles()">
+        <table class="table">
           <thead>
             <tr>
               <th>
-                <input type="checkbox"  ng-click="$ctrl.checkedVehicle" ng-click="selectAll()"/>
+                <input type="checkbox"  ng-click="$ctrl.checkedVehicle" ng-click=""/>
               </th>
               <th ng-click="orderBy('placa');" style="cursor:pointer;" >Placa</th>
               <th ng-click="orderBy('modelo');" style="cursor:pointer;">Modelo</th>
@@ -37,16 +91,22 @@
             </tr>
           </thead>
           <tbody>
-            <tr ng-repeat="vehicle in $ctrl.vehicles track by $index | filter:search | orderBy:order:reverse">
+            <tr ng-repeat="vehicle in $ctrl.vehicles | filter:search | orderBy:order:reverse">
               <td>
-                <input type="checkbox" ng-model"" name="">
+                <input type="checkbox" ng-model="$index">
               </td>
               <td>{{ vehicle.placa | uppercase }}</td>
-              <td>{{ vehicle.modelo | uppercase }}</td>
-              <td>{{ vehicle.marca | uppercase }}</td>
+              <td>{{ vehicle.modelo }}</td>
+              <td>{{ vehicle.marca }}</td>
               <td>
-                <a href="{{vehicle.foto}}">{{ vehicle.foto === "" ? 'Sem Foto' : "Imagem" }}</a>
-                {{ vehicle.foto | uppercase }}</td>
+                <a href="{{vehicle.imagem}}">{{ (vehicle.imagem === null) ? "Sem Foto" : "Imagem" }}</a>
+              </td>
+              <td>
+                {{ vehicle.combustivel }}
+              </td>
+              <td>
+                {{ vehicle.valor }}
+              </td>
             </tr>
           </tbody>
         </table>

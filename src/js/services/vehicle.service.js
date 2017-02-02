@@ -22,6 +22,25 @@ class VehicleService {
     );
   }
 
+  createVehicle(vehicle){
+    return this._$http({
+      url: this._AppContants.api + 'vehicles',
+      method: 'POST',
+      data: {
+        vehicle
+      }
+    }).then(
+      (res) => {
+        console.log(res.data);
+
+        return res;
+      },
+      (err) => {
+        return err;
+      }
+    );
+  }
+
 }
 
 export default VehicleService;
