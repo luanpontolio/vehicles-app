@@ -48,8 +48,16 @@ app.get('/vehicles', function(req, res) {
 });
 
 app.post('/vehicles', function(req, res) {
-  vehicles.push(req.body);
-  res.json(true);
+  var full  = req.body.combustivel;
+  var photo = req.body.imagem;
+  var brand = req.body.marca;
+  var model = req.body.modelo;
+  var plate = req.body.placa;
+  var value = req.body.valor;
+
+  console.log({ combustivel: full, imagem: photo, marca: brand, modelo: model, placa: plate, valor: value });
+  vehicles.push({ combustivel: full, imagem: photo, marca: brand, modelo: model, placa: plate, valor: value });
+  res.json(vehicles);
 });
 
 // app.put('/vehicles/:placa', function(req, res) {
