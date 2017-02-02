@@ -2,6 +2,8 @@ class VehicleService {
   constructor($http, AppConstants){
     'ngInject';
 
+    this.goForm = false;
+
     this._AppContants = AppConstants;
     this._$http = $http;
   }

@@ -5,7 +5,7 @@
 
       <div class="col-md-3">
         <button class="btn btn-success btn-green" 
-          ng-click="$ctrl.addVehicle" ng-click="">
+          ng-click="$ctrl.goForm = !$ctrl.goForm">
           Novo Carro
         </button>
       </div>
@@ -24,7 +24,7 @@
 
     </div>
 
-    <div class="row">
+    <div class="row" ng-show="$ctrl.goForm">
       <form name="formVehicle">
         <div 
           ng-class="{ 'has-error' : formVehicle.plateVehicle.$invalid && formVehicle.plateVehicle.$dirty, 'has-success' : formVehicle.plateVehicle.$valid, 'form-group' : true }">
@@ -70,7 +70,7 @@
           </button>
         </div>
 
-    </form>
+      </form>
 
     </div>
 
