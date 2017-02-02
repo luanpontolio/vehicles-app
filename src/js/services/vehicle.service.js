@@ -2,8 +2,6 @@ class VehicleService {
   constructor($http, AppConstants){
     'ngInject';
 
-    this.goForm = false;
-
     this._AppContants = AppConstants;
     this._$http = $http;
   }
@@ -18,18 +16,20 @@ class VehicleService {
 
         return res;
       }, 
-      (err) =>{
+      (err) => {
         return err;
       }
     );
   }
 
   createVehicle(vehicle){
+    console.log(vehicle);
+
     return this._$http({
       url: this._AppContants.api + 'vehicles',
       method: 'POST',
       data: {
-        vehicle
+        params: vehicle
       }
     }).then(
       (res) => {

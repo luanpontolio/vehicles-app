@@ -6,7 +6,6 @@ var app = express();
 app.use(express.static(__dirname + '/public'));
 app.use(bodyParser.json());
 
-var new_vehicles = []
 var vehicles = [ 
   { 
     "combustivel" : "Flex",
@@ -48,16 +47,24 @@ app.get('/vehicles', function(req, res) {
 });
 
 app.post('/vehicles', function(req, res) {
-  var full  = req.body.combustivel;
-  var photo = req.body.imagem;
-  var brand = req.body.marca;
-  var model = req.body.modelo;
-  var plate = req.body.placa;
-  var value = req.body.valor;
+  var ful   = req.body.params.combustivel;
+  var image = req.body.params.imagem;
+  var brand = req.body.params.marca;
+  var model = req.body.params.modelo;
+  var plate = req.body.params.placa;
+  var value = req.body.params.valor;
 
-  console.log({ combustivel: full, imagem: photo, marca: brand, modelo: model, placa: plate, valor: value });
-  vehicles.push({ combustivel: full, imagem: photo, marca: brand, modelo: model, placa: plate, valor: value });
-  res.json(vehicles);
+
+  vehicles.push({
+    "combustivel" : ful,
+    "imagem" : image,
+    "marca" : brand,
+    "modelo" : model,
+    "placa" : plate,
+    "valor" : value
+  });
+
+  res.json(true);
 });
 
 // app.put('/vehicles/:placa', function(req, res) {
