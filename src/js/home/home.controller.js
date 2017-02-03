@@ -21,39 +21,59 @@ class HomeCtlr{
         this.vehicles = res.data;
       },
       (err) => {
-        this.message = "Falha ao carregar " + err;
-        console.log(this.message);
+        this.errors = "Falha ao carregar " + err;
+        console.log(this.errors);
       }
     );
   }
 
   add(vehicle) {
     this._Vehicle
-    .createVehicle(vehicle) 
+    .addVehicle(vehicle) 
     .then(
       (res) => {
         delete this._$scope.vehicle;
         this._$scope.formVehicle.$setPristine();
-        this.message = 'Cadastrado com sucesso!'
+        this.message = 'Operação realizada com sucesso!';
 
         this.load();
       },
       (err) => {
-        this.message = "Não foi possível efetuar o cadastro" + err;
+        this.errors = "Não foi possível efetuar o cadastro" + err;
       }
     )
   }
 
   edit(vehicle) {
-    console.log(vehicle);
-    this._$scope.vehicle = vehicle;
-    this._$scope.editing = true;
-    this.goForm  = true;
-    this.message = "";
+    if (vehicle.selected) {
+      this._$scope.vehicle = vehicle;
+      this._$scope.editing = true;
+      this.goForm  = true;
+    } else{
+      this._$scope.vehicle = null;
+      this._$scope.editing = false;
+      this.goForm  = false;
+    }
   }
 
   save(vehicle) {
-    console.log(vehicle);
+    this._Vehicle.addVehicle(angular.copy(vehicle));
+    this._$scope.formVehicle.$setPristine();
+    delete this._$scope.vehicle;
+    this._$scope.editing = false;
+  }
+
+  delete(vehicle) {
+    this._Vehicle
+    .destroyVehicle(vehicle)
+    .the(
+      (res) => {
+        res;
+      }, 
+      (err) => {
+        err;
+      }
+    )
   }
 
   orderBy(col) {
