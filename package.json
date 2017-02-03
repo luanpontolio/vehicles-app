@@ -23,6 +23,7 @@
   "homepage": "https://github.com/luanpontolio/vehicles-app#readme",
   "devDependencies": {
     "angular": "^1.5.0-rc.2",
+    "angular-file-upload": "^2.5.0",
     "angular-ui-router": "^0.2.18",
     "babel-preset-es2015": "^6.3.13",
     "babelify": "^7.2.0",
