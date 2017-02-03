@@ -3,19 +3,19 @@
   <div class="container container-fluid page">
     <div class="row">
 
-      <div class="col-md-3">
+      <div class="col-lg-8 col-md-8 pull-left">
         <button class="btn btn-success btn-green" 
           ng-click="$ctrl.goForm = !$ctrl.goForm">
           Novo Carro
         </button>
       </div>
 
-      <div class="col-md-6 col-md-offset-3">
+      <div class="col-lg-3 col-md-3 pull-right">
         <div class="form-group">
           <div class="input-group">
             <input type="text"  ng-model="search.marca" 
               class="form-control" placeholder="Pesquisa" aria-describedby="search">
-            <span class="input-group-addon material-icons" id="search">
+            <span class="input-group-addon btn-blue-light material-icons" id="search">
               search
             </span>
           </div>
@@ -26,87 +26,102 @@
 
     <div class="row" ng-show="$ctrl.goForm">
       <form name="formVehicle" class="form form-inline">
-        <div 
-          ng-class="{ 'has-error' : formVehicle.placa.$invalid && formVehicle.placa.$dirty, 'has-success' : formVehicle.placa.$valid, 'form-group' : true }">
-          <input type="text" ng-model="vehicle.placa" 
-            name="placa" ng-required="true" class="form-control" placeholder="Placa">
-        </div>
+        <div class="panel panel-default">
+          <div class="panel-body">
+            <div 
+              ng-class="{ 'has-error' : formVehicle.placa.$invalid && formVehicle.placa.$dirty, 'has-success' : formVehicle.placa.$valid, 'form-group' : true }">
+              <input type="text" ng-model="vehicle.placa" 
+                name="placa" ng-required="true" class="form-control" placeholder="Placa">
+            </div>
 
-        <div class="form-group">
-          <input type="text" ng-model="vehicle.imagem" name="imagem" class="form-control" placeholder="Imagem" >
-        </div>
+            <div class="form-group">
+              <input type="text" ng-model="vehicle.imagem" name="imagem" class="form-control" placeholder="Imagem" >
+            </div>
 
-        <div 
-          ng-class="{ 'has-error' : formVehicle.modelo.$invalid && formVehicle.modelo.$dirty, 'has-success' : formVehicle.modelo.$valid, 'form-group' : true }">
-          <input type="text" ng-model="vehicle.modelo" name="modelo" ng-required="true" 
-            class="form-control" placeholder="Modelo">
-        </div>
-        
-        <div 
-          ng-class="{ 'has-error' : formVehicle.marca.$invalid && formVehicle.marca.$dirty, 'has-success' : formVehicle.marca.$valid, 'form-group' : true }">
-          <input type="text" ng-model="vehicle.marca" name="marca" ng-required="true" class="form-control" placeholder="Marca">
-        </div>
+            <div 
+              ng-class="{ 'has-error' : formVehicle.modelo.$invalid && formVehicle.modelo.$dirty, 'has-success' : formVehicle.modelo.$valid, 'form-group' : true }">
+              <input type="text" ng-model="vehicle.modelo" name="modelo" ng-required="true" 
+                class="form-control" placeholder="Modelo">
+            </div>
+            
+            <div 
+              ng-class="{ 'has-error' : formVehicle.marca.$invalid && formVehicle.marca.$dirty, 'has-success' : formVehicle.marca.$valid, 'form-group' : true }">
+              <input type="text" ng-model="vehicle.marca" name="marca" ng-required="true" class="form-control" placeholder="Marca">
+            </div>
 
-        <div class="form-group">
-          <select class="form-control" ng-model="vehicle.combustivel" name="combustivel">
-            <option ng-repeat="gas in $ctrl.typeGases" value="{{gas.option}}">
-              {{ gas.option }}
-            </option>
-          </select>
-        </div>
+            <div class="form-group">
+              <select class="form-control" ng-model="vehicle.combustivel" name="combustivel">
+                <option ng-repeat="gas in $ctrl.typeGases" value="{{gas.option}}">
+                  {{ gas.option }}
+                </option>
+              </select>
+            </div>
 
-        <div class="form-group">
-          <input type="text" ng-model="vehicle.valor" name="valor" class="form-control" placeholder="Valor">
-        </div>
+            <div class="form-group">
+              <input type="text" ng-model="vehicle.valor" name="valor" class="form-control" placeholder="Valor">
+            </div>
+          </div>
+          <div class="panel-footer">
+            <div class="form-group">
+              <div ng-hide="editing">
+                <button ng-click="$ctrl.add(vehicle)" 
+                  ng-disabled="formVehicle.$invalid" class="btn btn-default">
+                  Adicionar
+                </button>
+              </div>
+              <div ng-show="editing" class="btn-group">
+                <button ng-click="$ctrl.save(vehicle);" 
+                  ng-disabled="formVehicle.$invalid" class="btn btn-info">
+                  Salvar
+                </button>
 
-        <div class="form-group">
-          <button ng-hide="editing" ng-click="$ctrl.add(vehicle)" 
-            ng-disabled="formVehicle.$invalid" class="btn btn-default">
-            Adicionar
-          </button>
-          <button ng-show="editing" ng-click="$ctrl.save(vehicle);" 
-            ng-disabled="formVehicle.$invalid" class="btn btn-info">
-            Editar
-          </button>
+                <button ng-click="$ctrl.delete($ctrl.vehicle)" class="btn btn-danger">
+                  Deletar
+                </button>
+              </div>
+            </div>
+          </div>
         </div>
       </form>
     </div>
 
     <div class="row">
       <div class="col-md-12">
-        <table class="table" ng-show="$ctrl.vehicles.length > 0">
-          <thead>
-            <tr>
-              <th>
-                <input type="checkbox" ng-mode="$ctrl.selectedAll" ng-click="$ctrl.checked()" />
-              </th>
-              <th ng-click="$ctrl.orderBy('placa')" style="cursor:pointer;" >Placa</th>
-              <th ng-click="$ctrl.orderBy('modelo')" style="cursor:pointer;">Modelo</th>
-              <th ng-click="$ctrl.orderBy('marca')" style="cursor:pointer;">Marca</th>
-              <th >Foto</th>
-              <th ng-click="$ctrl.orderBy('combustivel')" style="cursor:pointer;">Combustível</th>
-              <th>Valor</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr ng-class="{'selected info': vehicle.selected}" 
-              ng-repeat="vehicle in $ctrl.vehicles | filter:search | orderBy:$ctrl.order:$ctrl.reverse">
-              <td>
-                <input type="checkbox" ng-model="vehicle.selected" ng-click="$ctrl.edit(vehicle)">
-              </td>
-              <td>{{ vehicle.placa | uppercase }}</td>
-              <td>{{ vehicle.modelo }}</td>
-              <td>{{ vehicle.marca }}</td>
-              <td>
-                <a href="{{vehicle.imagem}}">
-                  {{ (vehicle.imagem === null || !vehicle.hasOwnProperty('imagem')) ? "Sem Foto" : "Imagem" }}
-                </a>
-              </td>
-              <td>{{ vehicle.combustivel }}</td>
-              <td>{{ vehicle.valor }}</td>
-            </tr>
-          </tbody>
-        </table>
+        <div class="table-responsive">
+          <table class="table" ng-show="$ctrl.vehicles.length > 0">
+            <thead>
+              <tr>
+                <th>
+                  <input type="checkbox" />
+                </th>
+                <th ng-click="$ctrl.orderBy('placa')" style="cursor:pointer;" >Placa</th>
+                <th ng-click="$ctrl.orderBy('modelo')" style="cursor:pointer;">Modelo</th>
+                <th ng-click="$ctrl.orderBy('marca')" style="cursor:pointer;">Marca</th>
+                <th >Foto</th>
+                <th ng-click="$ctrl.orderBy('combustivel')" style="cursor:pointer;">Combustível</th>
+                <th>Valor</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr ng-class="{'selected info': vehicle.selected}" 
+                ng-repeat="vehicle in $ctrl.vehicles | filter:search | orderBy:$ctrl.order:$ctrl.reverse">
+                <td>
+                  <input type="checkbox" ng-model="vehicle.selected" ng-click="$ctrl.edit(vehicle)">
+                </td>
+                <td>{{ vehicle.placa | uppercase }}</td>
+                <td>{{ vehicle.modelo }}</td>
+                <td>{{ vehicle.marca }}</td>
+                <td>
+                  <a href="{{vehicle.imagem}}">
+                    {{ (vehicle.imagem === null || !vehicle.hasOwnProperty('imagem')) ? "Sem Foto" : "Imagem" }}
+                  </a>
+                </td>
+                <td>{{ vehicle.combustivel }}</td>
+                <td>{{ vehicle.valor | currency }}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
       </div>
     </div>
 
