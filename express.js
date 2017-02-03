@@ -47,27 +47,18 @@ app.get('/vehicles', function(req, res) {
 });
 
 app.post('/vehicles', function(req, res) {
-  var ful   = req.body.params.combustivel;
-  var image = req.body.params.imagem;
-  var brand = req.body.params.marca;
-  var model = req.body.params.modelo;
-  var plate = req.body.params.placa;
-  var value = req.body.params.valor;
-
-
-  vehicles.push({
-    "combustivel" : ful,
-    "imagem" : image,
-    "marca" : brand,
-    "modelo" : model,
-    "placa" : plate,
-    "valor" : value
-  });
-
+  vehicles.push(req.body.params);
   res.json(true);
 });
 
-// app.put('/vehicles/:placa', function(req, res) {
-//   vehicles.push(req.body)
-//   res.json(true);
-// });
+app.delete('/vehicles/:id', function(req, res) {
+
+  console.log(req.params.id);
+  if(vehicles.length <= req.params) {
+    res.statusCode = 404;
+    return res.send('Error 404: No quote found');
+  }  
+
+  vehicles.splice(req.params.id, 1);
+  res.json(true);
+});
