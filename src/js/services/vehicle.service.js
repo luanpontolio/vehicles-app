@@ -22,7 +22,7 @@ class VehicleService {
     );
   }
 
-  createVehicle(vehicle){
+  addVehicle(vehicle){
     console.log(vehicle);
 
     return this._$http({
@@ -41,6 +41,21 @@ class VehicleService {
         return err;
       }
     );
+  }
+
+  destroyVehicle(vehicle) {
+    console.log(vehicle)
+    return this._$http({
+      url: this._AppContants.api + 'vehicles/' + vehicle,
+      method: 'DELETE'
+    }).then(
+      (res) => {
+        return res;
+      }, 
+      (err) => {
+        return err;
+      }
+    )
   }
 
 }
