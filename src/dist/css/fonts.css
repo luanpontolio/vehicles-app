@@ -1,7 +1,7 @@
 @font-face {
 	font-family: 'proximanova-regular';
 	src: url('fonts/proximanova-regular.eot');
-	src: url('fonts/proximanova-regular.eot?#iefix') format('embedded-opentype'), url('fonts/proximanova-regular.woff2') format('woff2'), url('fonts/proximanova-regular.woff') format('woff'), url('fonts/proximanova-regular.ttf') format('truetype');
+	src: url('fonts/proximanova-regular.eot?#iefix') format('embedded-opentype');
 	font-weight: normal;
 	font-style: normal;
 }
