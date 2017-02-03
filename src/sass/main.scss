@@ -1,5 +1,5 @@
 @import "../dist/css/bootstrap.min";
-
+@import "../dist/css/fonts";
 
 .navbar-inner {
 	display: block;
@@ -25,18 +25,26 @@
 }
 
 .form-group {
-	.input-goup {
-		height: 50px;
-		font-family: 'proximanova-regular';
-		font-size: 16px;
-		color: #385a7b;
-		box-shadow: none;
-		border: 1px solid #c9d3dd;
+	
+	.form-control{
+	    font-size: 14px;
+	    color: #385a7b;
+	    box-shadow: none;
+	    border: 1px solid #c9d3dd;
 	}
 }
 
-.btn-green {
-	background-color: #4ABA58;
+.btn {
+	padding: 8px 27px;
+	white-space: nowrap;
+
+	.btn-green {
+		background-color: #4ABA58;
+  	}
+}
+
+.btn-blue-light{
+	color: #385a7b;
 }
 
 .selected .info{
