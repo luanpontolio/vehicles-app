@@ -7,8 +7,9 @@ class HomeCtlr{
     this._Vehicle = Vehicle;
     this._$scope  = $scope;
     this.goForm   = false;
+    this.search   = null;
 
-    this.typeGases = ('Gasolina Alcool Flex').split(' ').map(function(option) {
+    this.typeGases = ('Gasolina Alcool Flex').split(' ').map((option) => {
       return { option: option };
     });
     
@@ -56,24 +57,30 @@ class HomeCtlr{
     }
   }
 
-  save(vehicle) {
-    this._Vehicle.addVehicle(angular.copy(vehicle));
-    this._$scope.formVehicle.$setPristine();
-    delete this._$scope.vehicle;
-    this._$scope.editing = false;
+  save(vehicle, ) {
+    this._Vehicle
+    .editVehicle(angular.copy(vehicle))
+    .then(
+      (res) => {
+        delete this._$scope.vehicle;
+        this._$scope.formVehicle.$setPristine();
+        this._$scope.editing = false;
+      }
+    );
   }
 
   delete(vehicle) {
+    this.vehicles.splice(this.vehicles.indexOf(vehicle),1);
     this._Vehicle
     .destroyVehicle(vehicle)
-    .the(
+    .then(
       (res) => {
-        res;
-      }, 
-      (err) => {
-        err;
+        delete this._$scope.vehicle;
+        this._$scope.formVehicle.$setPristine();
+        this._$scope.editing = false;
+        this.message = 'Operação realizada com sucesso!';
       }
-    )
+    );
   }
 
   orderBy(col) {

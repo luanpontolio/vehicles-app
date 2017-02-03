@@ -4,6 +4,8 @@ class VehicleService {
 
     this._AppContants = AppConstants;
     this._$http = $http;
+
+    this.current = null;
   }
 
   getVehicles(){
@@ -13,6 +15,8 @@ class VehicleService {
     }).then(
       (res) => {
         console.log(res.data);
+
+        this.current = res.data;
 
         return res;
       }, 
@@ -43,10 +47,27 @@ class VehicleService {
     );
   }
 
-  destroyVehicle(vehicle) {
-    console.log(vehicle)
+  editVehicle(vehicle) {
     return this._$http({
-      url: this._AppContants.api + 'vehicles/' + vehicle,
+      url: this._AppContants.api + 'vehicles/' + vehicle.placa,
+      method: 'PUT',
+      data: {
+        params: vehicle
+      }
+    }).then(
+      (res) => {
+        return res;
+      },
+      (err) => {
+        return err;
+      }
+    )
+  }
+
+  destroyVehicle(id) {
+    console.log(id)
+    return this._$http({
+      url: this._AppContants.api + 'vehicles/' + id,
       method: 'DELETE'
     }).then(
       (res) => {

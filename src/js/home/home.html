@@ -11,84 +11,84 @@
       </div>
 
       <div class="col-lg-3 col-md-3 pull-right">
-        <div class="form-group">
-          <div class="input-group">
-            <input type="text"  ng-model="search.marca" 
-              class="form-control" placeholder="Pesquisa" aria-describedby="search">
-            <span class="input-group-addon btn-blue-light material-icons" id="search">
-              search
-            </span>
-          </div>
-        </div>
+        <search-input search="search"></search-input>
       </div>
 
     </div>
 
     <div class="row" ng-show="$ctrl.goForm">
-      <form name="formVehicle" class="form form-inline">
-        <div class="panel panel-default">
-          <div class="panel-body">
-            <div 
-              ng-class="{ 'has-error' : formVehicle.placa.$invalid && formVehicle.placa.$dirty, 'has-success' : formVehicle.placa.$valid, 'form-group' : true }">
-              <input type="text" ng-model="vehicle.placa" 
-                name="placa" ng-required="true" class="form-control" placeholder="Placa">
-            </div>
-
-            <div class="form-group">
-              <input type="text" ng-model="vehicle.imagem" name="imagem" class="form-control" placeholder="Imagem" >
-            </div>
-
-            <div 
-              ng-class="{ 'has-error' : formVehicle.modelo.$invalid && formVehicle.modelo.$dirty, 'has-success' : formVehicle.modelo.$valid, 'form-group' : true }">
-              <input type="text" ng-model="vehicle.modelo" name="modelo" ng-required="true" 
-                class="form-control" placeholder="Modelo">
-            </div>
-            
-            <div 
-              ng-class="{ 'has-error' : formVehicle.marca.$invalid && formVehicle.marca.$dirty, 'has-success' : formVehicle.marca.$valid, 'form-group' : true }">
-              <input type="text" ng-model="vehicle.marca" name="marca" ng-required="true" class="form-control" placeholder="Marca">
-            </div>
-
-            <div class="form-group">
-              <select class="form-control" ng-model="vehicle.combustivel" name="combustivel">
-                <option ng-repeat="gas in $ctrl.typeGases" value="{{gas.option}}">
-                  {{ gas.option }}
-                </option>
-              </select>
-            </div>
-
-            <div class="form-group">
-              <input type="text" ng-model="vehicle.valor" name="valor" class="form-control" placeholder="Valor">
-            </div>
-          </div>
-          <div class="panel-footer">
-            <div class="form-group">
-              <div ng-hide="editing">
-                <button ng-click="$ctrl.add(vehicle)" 
-                  ng-disabled="formVehicle.$invalid" class="btn btn-default">
-                  Adicionar
-                </button>
+      <div class="col-lg-6 col-lg-offset-3">
+        <form name="formVehicle" class="form form-inline">
+          <div class="panel panel-default">
+            <div class="panel-body">
+              <div class="image-profile">
+                <img src="{{vehicle.imagem}}" alt="Nenhuma Foto encontrada" class="img-rounded" style="width: 150px; height: 140px;">
               </div>
-              <div ng-show="editing" class="btn-group">
-                <button ng-click="$ctrl.save(vehicle);" 
-                  ng-disabled="formVehicle.$invalid" class="btn btn-info">
-                  Salvar
-                </button>
 
-                <button ng-click="$ctrl.delete($ctrl.vehicle)" class="btn btn-danger">
-                  Deletar
-                </button>
+              <div class="form-group">
+                <input type="text" ng-model="vehicle.imagem" name="imagem" class="form-control" placeholder="Imagem" >
+              </div>
+             
+              <div
+                ng-class="{ 'has-error' : formVehicle.placa.$invalid && formVehicle.placa.$dirty, 'has-success' : formVehicle.placa.$valid, 'form-group' : true }">
+                <input type="text" ng-model="vehicle.placa" 
+                  name="placa" ng-required="true" class="form-control" placeholder="Placa">
+              </div>
+
+
+              <div 
+                ng-class="{ 'has-error' : formVehicle.modelo.$invalid && formVehicle.modelo.$dirty, 'has-success' : formVehicle.modelo.$valid, 'form-group' : true }">
+                <input type="text" ng-model="vehicle.modelo" name="modelo" ng-required="true" 
+                  class="form-control" placeholder="Modelo">
+              </div>
+              
+              <div 
+                ng-class="{ 'has-error' : formVehicle.marca.$invalid && formVehicle.marca.$dirty, 'has-success' : formVehicle.marca.$valid, 'form-group' : true }">
+                <input type="text" ng-model="vehicle.marca" name="marca" ng-required="true" class="form-control" placeholder="Marca">
+              </div>
+
+              <div class="form-group">
+                <select class="form-control" ng-model="vehicle.combustivel" name="combustivel">
+                  <option ng-repeat="gas in $ctrl.typeGases" value="{{gas.option}}">
+                    {{ gas.option }}
+                  </option>
+                </select>
+              </div>
+
+              <div class="form-group">
+                <input type="text" ng-model="vehicle.valor" name="valor" class="form-control" placeholder="Valor">
               </div>
             </div>
+            <div class="panel-footer">
+              <div>
+                <div ng-hide="editing">
+                  <button ng-click="$ctrl.add(vehicle)" 
+                    ng-disabled="formVehicle.$invalid" class="btn btn-default">
+                    Adicionar
+                  </button>
+                </div>
+                <div ng-show="editing" class="algin-item-end">
+                  <button ng-click="$ctrl.save(vehicle);" 
+                    ng-disabled="formVehicle.$invalid" class="btn btn-white">
+                    Salvar
+                  </button>
+
+                  <button ng-click="$ctrl.delete(vehicle)" ng-disabled="formVehicle.$invalid"
+                    class="btn btn-danger">
+                    Deletar
+                  </button>
+                </div>
+              </div>
+            </div>
           </div>
-        </div>
-      </form>
+        </form>
+      </div>
     </div>
 
     <div class="row">
       <div class="col-md-12">
-        <div class="table-responsive">
-          <table class="table" ng-show="$ctrl.vehicles.length > 0">
+        <div ng-show="$ctrl.vehicles.length > 0" class="table-responsive">
+          <table class="table">
             <thead>
               <tr>
                 <th>
@@ -112,7 +112,7 @@
                 <td>{{ vehicle.modelo }}</td>
                 <td>{{ vehicle.marca }}</td>
                 <td>
-                  <a href="{{vehicle.imagem}}">
+                  <a data-toggle="modal" data-target="#myModal">
                     {{ (vehicle.imagem === null || !vehicle.hasOwnProperty('imagem')) ? "Sem Foto" : "Imagem" }}
                   </a>
                 </td>
@@ -121,6 +121,9 @@
               </tr>
             </tbody>
           </table>
+          <div class="modal fade" id="myModal" >
+            teste
+          </div>
         </div>
       </div>
     </div>

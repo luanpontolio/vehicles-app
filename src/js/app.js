@@ -12,6 +12,7 @@ import './config/app.templates';
 
 // Import our app functionaity
 import './layout';
+import './components';
 import './home';
 import './services';
 
@@ -20,6 +21,7 @@ const requires = [
   'angularFileUpload',
   'templates',
   'app.layout',
+  'app.components',
   'app.home',
   'app.service'
 ];

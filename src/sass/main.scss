@@ -25,13 +25,26 @@
 }
 
 .form-group {
+	padding: 5px;
+	margin: 10px;
 	
-	.form-control{
+	.form-control {
 	    font-size: 14px;
 	    color: #385a7b;
 	    box-shadow: none;
 	    border: 1px solid #c9d3dd;
 	}
+}
+
+.image-profile {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.algin-item-end{
+	display: flex;
+	justify-content: space-around;
 }
 
 .btn {
@@ -43,9 +56,16 @@
   	}
 }
 
+.btn-white {
+	color: #385a7b;
+	background: transparent;
+	border: 1px solid #385a7b;
+}
+
 .btn-blue-light{
 	color: #385a7b;
 }
+
 
 .selected .info{
 	
