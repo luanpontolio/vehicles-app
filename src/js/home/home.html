@@ -16,17 +16,21 @@
 
     </div>
 
+    <alert-message condition="$ctrl.isSuccess" message="$ctrl.message"></alert-message>
+
     <div class="row" ng-show="$ctrl.goForm">
       <div class="col-lg-6 col-lg-offset-3">
-        <form name="formVehicle" class="form form-inline">
+        <form name="formVehicle" class="form">
           <div class="panel panel-default">
             <div class="panel-body">
               <div class="image-profile">
-                <img src="{{vehicle.imagem}}" alt="Nenhuma Foto encontrada" class="img-rounded" style="width: 150px; height: 140px;">
+                <img ngf-src="vehicle.imagem" alt="Nenhuma Foto encontrada" class="img-rounded" style="width: 150px; height: 140px;">
               </div>
+              <br>
 
               <div class="form-group">
-                <input type="text" ng-model="vehicle.imagem" name="imagem" class="form-control" placeholder="Imagem" >
+                <input type="file" ngf-select ng-model="vehicle.imagem" name="imagem" 
+                  class="form-control" placeholder="Imagem" ngf-pattern="'image/*'" ngf-accept="'image/*'">
               </div>
              
               <div
