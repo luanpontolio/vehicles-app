@@ -1,6 +1,5 @@
 let AlertMessage = {
   bindings: {
-  	condition: '=',
     message: '='
   },
 

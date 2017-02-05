@@ -1,9 +1,19 @@
-<div class="row" ng-show="$ctrl.message" >
-	<div class="col-lg-12">
-			
-		<div ng-class="$ctrl.isSuccess ? 'alert alert-success' : 'alert alert-danger'" role="alert">
-			{{ $ctrl.message }}
-		</div>
+<div class="row" ng-show="$ctrl.message.success" >
+  <div class="col-lg-12">
+      
+    <div class="alert alert-success" role="alert" >
+      {{ $ctrl.message.success }}
+    </div>
 
-	</div>
+  </div>
+</div>
+
+<div class="row" ng-show="$ctrl.message.error" >
+  <div class="col-lg-12">
+      
+    <div class="alert alert-success" role="alert">
+      {{ $ctrl.message.error }}
+    </div>
+
+  </div>
 </div>
