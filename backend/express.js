@@ -47,10 +47,10 @@ app.get('/vehicles', function(req, res) {
 });
 
 app.post('/vehicles', function(req, res) {
-  console.log(req.body.params.imagem);
+
   var vehicle = {
         "combustivel" : req.body.params.combustivel,
-        "imagem" : req.body.params.imagem.$ngfBlobUrl,
+        "imagem" : req.body.params.imagem,
         "marca" : req.body.params.marca,
         "modelo" : req.body.params.modelo,
         "placa" : req.body.params.placa,
@@ -64,9 +64,10 @@ app.put('/vehicles/:id', function(req, res) {
   console.log(req.body.params);
   vehicles.forEach(function(vehicle, key) {
     if (vehicle.placa === req.body.params.placa){
+     
       vehicles[key] = {
         "combustivel" : req.body.params.combustivel,
-        "imagem" : req.body.params.imagem.$ngfBlobUrl,
+        "imagem" : req.body.params.imagem,
         "marca" : req.body.params.marca,
         "modelo" : req.body.params.modelo,
         "placa" : req.body.params.placa,
