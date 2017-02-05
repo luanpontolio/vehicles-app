@@ -11,12 +11,12 @@
       </div>
 
       <div class="col-lg-3 col-md-3 pull-right">
-        <search-input search="search"></search-input>
+        <search-input search="$ctrl.paramsFilter.modelo"></search-input>
       </div>
 
     </div>
 
-    <alert-message condition="$ctrl.isSuccess" message="$ctrl.message"></alert-message>
+    <alert-message message="$ctrl.message"></alert-message>
 
     <div class="row" ng-show="$ctrl.goForm">
       <div class="col-lg-6 col-lg-offset-3">
@@ -39,16 +39,15 @@
                   name="placa" ng-required="true" class="form-control" placeholder="Placa">
               </div>
 
+              <div 
+                ng-class="{ 'has-error' : formVehicle.marca.$invalid && formVehicle.marca.$dirty, 'has-success' : formVehicle.marca.$valid, 'form-group' : true }">
+                <input type="text" ng-model="vehicle.marca" name="marca" ng-required="true" class="form-control" placeholder="Marca do Veículo">
+              </div>
 
               <div 
                 ng-class="{ 'has-error' : formVehicle.modelo.$invalid && formVehicle.modelo.$dirty, 'has-success' : formVehicle.modelo.$valid, 'form-group' : true }">
                 <input type="text" ng-model="vehicle.modelo" name="modelo" ng-required="true" 
-                  class="form-control" placeholder="Modelo">
-              </div>
-              
-              <div 
-                ng-class="{ 'has-error' : formVehicle.marca.$invalid && formVehicle.marca.$dirty, 'has-success' : formVehicle.marca.$valid, 'form-group' : true }">
-                <input type="text" ng-model="vehicle.marca" name="marca" ng-required="true" class="form-control" placeholder="Marca">
+                  class="form-control" placeholder="Modelo do Carro">
               </div>
 
               <div class="form-group">
@@ -60,8 +59,9 @@
               </div>
 
               <div class="form-group">
-                <input type="text" ng-model="vehicle.valor" name="valor" class="form-control" placeholder="Valor">
+                <input type="text" ng-model="vehicle.valor" name="valor" class="form-control" placeholder="0.00" ui-money-mask="mdecimals">
               </div>
+
             </div>
             <div class="panel-footer">
               <div>
@@ -92,42 +92,44 @@
     <div class="row">
       <div class="col-md-12">
         <div ng-show="$ctrl.vehicles.length > 0" class="table-responsive">
-          <table class="table">
+          <table class="table" ng-table="$ctrl.tableParams">
             <thead>
-              <tr>
-                <th>
+              <th>
+                <div class="checkbox">
                   <input type="checkbox" />
-                </th>
-                <th ng-click="$ctrl.orderBy('placa')" style="cursor:pointer;" >Placa</th>
-                <th ng-click="$ctrl.orderBy('modelo')" style="cursor:pointer;">Modelo</th>
-                <th ng-click="$ctrl.orderBy('marca')" style="cursor:pointer;">Marca</th>
-                <th >Foto</th>
-                <th ng-click="$ctrl.orderBy('combustivel')" style="cursor:pointer;">Combustível</th>
-                <th>Valor</th>
-              </tr>
+                  <label></label>
+                </div>
+              </th>
+              <th>Placa</th>
+              <th>Modelo</th>
+              <th>Marca</th>
+              <th>Foto</th>
+              <th>Combustível</th>
+              <th>Valor</th>
             </thead>
             <tbody>
               <tr ng-class="{'selected info': vehicle.selected}" 
-                ng-repeat="vehicle in $ctrl.vehicles | filter:search | orderBy:$ctrl.order:$ctrl.reverse">
+                ng-repeat="vehicle in $data track by $index">
                 <td>
-                  <input type="checkbox" ng-model="vehicle.selected" ng-click="$ctrl.edit(vehicle)">
+                  <div class="checkbox">
+                    <input type="checkbox" ng-model="vehicle.selected" 
+                      ng-click="$ctrl.edit(vehicle)">
+                    <label></label>
+                  </div>
                 </td>
-                <td>{{ vehicle.placa | uppercase }}</td>
-                <td>{{ vehicle.modelo }}</td>
-                <td>{{ vehicle.marca }}</td>
+                <td sortable="'placa'">{{ vehicle.placa | uppercase }}</td>
+                <td sortable="'modelo'">{{ vehicle.modelo }}</td>
+                <td sortable="'marca'">{{ vehicle.marca }}</td>
                 <td>
                   <a data-toggle="modal" data-target="#myModal">
                     {{ (vehicle.imagem === null || !vehicle.hasOwnProperty('imagem')) ? "Sem Foto" : "Imagem" }}
                   </a>
                 </td>
-                <td>{{ vehicle.combustivel }}</td>
-                <td>{{ vehicle.valor | currency }}</td>
+                <td sortable="'combustivel'">{{ vehicle.combustivel }}</td>
+                <td sortable="'valor'">{{ vehicle.valor | currency: '' : 2 }}</td>
               </tr>
             </tbody>
           </table>
-          <div class="modal fade" id="myModal" >
-            teste
-          </div>
         </div>
       </div>
     </div>

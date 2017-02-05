@@ -7,19 +7,18 @@ class FileUploadService {
   }
 
   uploadImageVehicle(file) {
-    console.log(file.type);
-    console.log(file.$ngfBlobUrl);
-
     return this._Upload.upload({
       url: this._AppConstants.nguploadAPI + '/upload',
       method: 'POST',
       headers: {
         'Content-Type': file.type
       },
-      data: file
+      data: { 'js': 'object'},
+      file: file
     }).then(
       (res) => {
-        return res.data.result[0].value;
+        console.log(res.data);
+        return res.data;
       },
       (err) => {
         return err;

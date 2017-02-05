@@ -1,6 +1,14 @@
 @import "../dist/css/bootstrap.min";
 @import "../dist/css/fonts";
 
+$baseFontSize: 16;
+$primaryColor: #fff;
+$secondaryColor: #c9d3dd;
+
+@function rem($val) {
+  @return #{$val / $baseFontSize}rem;
+}
+
 .navbar-inner {
 	display: block;
 	min-height: 40px;
@@ -24,6 +32,59 @@
    	align-content: center;
 }
 
+
+.checkbox {
+	position: relative;
+  	margin: 0;
+	display: flex;
+	justify-content: center;
+	
+	label {
+	  	display: inline-block;
+	  	vertical-align: middle;
+	  	padding-left: 0;
+		
+		&::before {
+			content: "";
+			display: inline-block;
+			position: absolute;
+			width: 17px;
+			height: 17px;
+			left: 0;
+			border: 1px solid #f1f4f9;
+			border-radius: 3px;
+			background-color: #fff;
+		}
+		
+		&::after {
+			display: inline-block;
+			position: absolute;
+			width: 16px;
+			height: 16px;
+			left: 0;
+			top: 0;
+			font-size: 11px;
+			color: #999;
+		}
+
+		&:after {
+			font-size: 16px;
+		}
+	}
+
+    input[type="checkbox"] {
+		position: absolute;
+		opacity: 0;
+		margin-left: 0;
+		z-index: 1;
+	}
+    
+    input[type=checkbox]:checked + label:after {
+		font-family: 'Material Icons';
+		content: "check";
+		color: #385a7b;
+	}
+}
 
 .form-group {
 
@@ -65,7 +126,40 @@
 	color: #385a7b;
 }
 
+input[type="checkbox"]{
+	padding: 5px;
+	background-color: #fff;	
+}
 
-.selected .info{
-	
+.table{
+    border: 1px solid #c9e6f2;
+	thead {
+		background-color: #f2f9fc;
+		color: #385a7b;
+		border-bottom: none !important;
+	}
+
+	tbody{
+		background: #fff;
+		color: #385a7b;
+
+		tr td{
+			margin-top: 10px;
+			margin-bottom: 10px;
+		}
+	}
+}
+
+.pagination {
+	display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+
+    .active{
+    	a{
+    		background-color: #c9e6f2;
+    		boder-color: #c9e6f2 !important;
+    		color: #385a7b;
+    	}
+    }
 }

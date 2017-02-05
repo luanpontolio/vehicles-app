@@ -50,28 +50,27 @@ app.post('/vehicles', function(req, res) {
 
   var vehicle = {
         "combustivel" : req.body.params.combustivel,
-        "imagem" : req.body.params.imagem,
-        "marca" : req.body.params.marca,
-        "modelo" : req.body.params.modelo,
-        "placa" : req.body.params.placa,
-        "valor" : req.body.params.valor
+        "imagem" :      req.body.params.imagem,
+        "marca" :       req.body.params.marca,
+        "modelo" :      req.body.params.modelo,
+        "placa" :       req.body.params.placa,
+        "valor" :       req.body.params.valor
   }
   vehicles.push(vehicle);
   res.json(true);
 });
 
 app.put('/vehicles/:id', function(req, res) {
-  console.log(req.body.params);
   vehicles.forEach(function(vehicle, key) {
     if (vehicle.placa === req.body.params.placa){
      
       vehicles[key] = {
         "combustivel" : req.body.params.combustivel,
-        "imagem" : req.body.params.imagem,
-        "marca" : req.body.params.marca,
-        "modelo" : req.body.params.modelo,
-        "placa" : req.body.params.placa,
-        "valor" : req.body.params.valor
+        "imagem" :      req.body.params.imagem,
+        "marca" :       req.body.params.marca,
+        "modelo" :      req.body.params.modelo,
+        "placa" :       req.body.params.placa,
+        "valor" :       req.body.params.valor
       };
     }
   });
@@ -81,7 +80,6 @@ app.put('/vehicles/:id', function(req, res) {
 
 app.delete('/vehicles/:id', function(req, res) {
 
-  console.log(req.params.id);
   if(vehicles.length <= req.params) {
     res.statusCode = 404;
     return res.send('Error 404: No quote found');
