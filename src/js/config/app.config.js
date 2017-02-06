@@ -8,7 +8,6 @@ function AppConfig($stateProvider, $urlRouterProvider) {
   });
 
   $urlRouterProvider.otherwise('/');
-
 }
 
 export default AppConfig;
