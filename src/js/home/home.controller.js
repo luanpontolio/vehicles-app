@@ -77,8 +77,9 @@ class HomeCtlr{
         delete this._$scope.vehicle;
         this._$scope.formVehicle.$setPristine();
         this._$scope.editing = false;
+        this.goForm          = false;
 
-        this.load();
+        this.tableParams.reload();
       }
     );
   }
@@ -92,18 +93,15 @@ class HomeCtlr{
         delete this._$scope.vehicle;
         this._$scope.formVehicle.$setPristine();
         this._$scope.editing = false;
+        this.goForm          = false;
         this.message.success = 'Operação realizada com sucesso!';
+
+        this.tableParams.reload();
       }
     );
   }
 
-  orderBy(col) {
-    this.order   = col;
-    this.reverse = !this.reverse;
-  }
-
   upload(file) {
-    console.log(file);
     if (this._$scope.formVehicle.imagem.$valid && file) {
       this._FileUpload.uploadImageVehicle(file);
     }

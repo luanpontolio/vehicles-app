@@ -17,8 +17,8 @@ class FileUploadService {
       file: file
     }).then(
       (res) => {
-        console.log(res.data);
-        return res.data;
+        console.log(res.data.result[1].value);
+        return res.data.result[1].value;
       },
       (err) => {
         return err;
