@@ -24,7 +24,7 @@
           <div class="panel panel-default">
             <div class="panel-body">
               <div class="image-profile">
-                <img ngf-src="vehicle.imagem" alt="Nenhuma Foto encontrada" class="img-rounded" style="width: 150px; height: 140px;">
+                <img ngf-src="vehicle.imagem" alt="Nenhuma Foto encontrada" class="img-thumbnail" style="width: 150px; height: 140px;">
               </div>
               <br>
 
@@ -109,7 +109,7 @@
             </thead>
             <tbody>
               <tr ng-class="{'selected info': vehicle.selected}" 
-                ng-repeat="vehicle in $data track by $index">
+                ng-repeat="vehicle in $data">
                 <td>
                   <div class="checkbox">
                     <input type="checkbox" ng-model="vehicle.selected" 

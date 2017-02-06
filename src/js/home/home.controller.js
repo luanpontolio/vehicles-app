@@ -85,12 +85,13 @@ class HomeCtlr{
   }
 
   delete(vehicle) {
-    this.vehicles.splice(this.vehicles.indexOf(vehicle),1);
+    this.vehicles.splice(this.vehicles.indexOf(vehicle), 1);
     this._Vehicle
-    .destroyVehicle(vehicle)
+    .destroyVehicle(angular.copy(vehicle))
     .then(
       (res) => {
-        delete this._$scope.vehicle;
+        console.log(this.vehicles);
+        delete this._$scope.vehicle;;
         this._$scope.formVehicle.$setPristine();
         this._$scope.editing = false;
         this.goForm          = false;

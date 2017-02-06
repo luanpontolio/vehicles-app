@@ -85,6 +85,6 @@ app.delete('/vehicles/:id', function(req, res) {
     return res.send('Error 404: No quote found');
   }  
 
-  vehicles.splice(req.params.id, 1);
+  vehicles.splice(vehicles.indexOf(req.params.id), 1);
   res.json(true);
 });
